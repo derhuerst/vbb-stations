@@ -16,9 +16,13 @@
 	"dependencies": {
 	},
 	"devDependencies": {
+		"got":           "^6.2",
+		"csv-parse":     "^1.0.2",
+		"ndjson":        "^1.4.3",
+		"so":            "^1.0.1"
 	},
 	"scripts": {
-		"build":         "build/index.coffee",
+		"build":         "node build.js",
 		"prepublish":    "npm run build"
 	}
 }
