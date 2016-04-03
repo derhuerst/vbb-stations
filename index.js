@@ -38,10 +38,8 @@ const stations = function (/* promised, filter */) {
 	let   filter
 
 	if (pattern === 'all' || pattern === undefined) filter = parser // no filter
-	else if ('number' === typeof pattern) {
+	else if ('number' === typeof pattern)
 		filter = parser.pipe(filterStream(filterById(pattern)))
-		promised = true
-	}
 	else filter = parser.pipe(filterStream(filterByKeys(pattern)))
 
 	if (promised === true) return new Promise((resolve, reject) => {

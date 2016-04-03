@@ -82,16 +82,3 @@ module.exports =
 					t.strictEqual data.length, 1
 					t.strictEqual data[0].id,  8000147
 					t.done()
-
-		'with id filter':
-
-			'returns a promise': (t) ->
-				t.ok isPromise stations 8000147
-				t.done()
-
-			'filters correctly': (t) ->
-				t.expect 2
-				stations(8000147).then (data) ->
-					t.strictEqual data.length, 1
-					t.strictEqual data[0].id,  8000147
-					t.done()

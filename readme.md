@@ -21,7 +21,7 @@ npm install vbb-stations
 ```js
 const stations = require('vbb-stations')
 
-stations(9042101).then(console.log) // query a single station
+stations(true, 9042101).then(console.log) // query a single station
 stations({weight: 50}).on('data', console.log) // filter stations
 ```
 
@@ -30,7 +30,7 @@ stations({weight: 50}).on('data', console.log) // filter stations
 
 `stations([promised], [pattern])`
 
-If `promised` is `true` or `pattern` is a station ID, a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) will be returned, resolving with an array of results.
+If `promised` is `true`, a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) will be returned, resolving with an array of results.
 
 Otherwise, a [stream](https://nodejs.org/api/stream.html#stream_class_stream_readable) in [object mode](https://nodejs.org/api/stream.html#stream_object_mode) will be returned, emitting one station at a time.
 
