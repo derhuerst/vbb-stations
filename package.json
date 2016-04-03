@@ -2,8 +2,8 @@
 	"name":              "vbb-stations",
 	"description":       "A list of VBB stations.",
 	"version":           "0.2.0",
-	"main":              "./index.js",
-	"files":             ["./index.js", "./data.ndjson", "vbb-logo.jpg"],
+	"main":              "index.js",
+	"files":             ["index.js", "data.ndjson", "vbb-logo.jpg"],
 	"keywords": [
 		"vbb", "berlin", "brandenburg", "public transport",
 		"stations", "open data", "json", "ndjson", "gtfs"
