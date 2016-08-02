@@ -1,7 +1,3 @@
-sink      = require 'stream-sink'
-isStream  = require 'is-stream'
-isPromise = require 'is-promise'
-
 stations  = require './index.js'
 
 
@@ -54,31 +50,9 @@ module.exports =
 
 
 
-	'stations':
-
-		'without `promised` flag':
-
-			'returns a stream': (t) ->
-				t.ok isStream stations id: 8000147
-				t.done()
-
-			'filters correctly': (t) ->
-				t.expect 2
-				sink = stations(id: 8000147).pipe sink objectMode: true
-				sink.on 'data', (data) ->
-					t.strictEqual data.length, 1
-					t.strictEqual data[0].id,  8000147
-					t.done()
-
-		'with `promised` flag':
-
-			'returns a promise': (t) ->
-				t.ok isPromise stations true, id: 8000147
-				t.done()
-
-			'filters correctly': (t) ->
-				t.expect 2
-				stations(true, id: 8000147).then (data) ->
-					t.strictEqual data.length, 1
-					t.strictEqual data[0].id,  8000147
-					t.done()
+	'filters correctly': (t) ->
+		t.expect 2
+		data = stations id: 8000147
+		t.strictEqual data.length, 1
+		t.strictEqual data[0].id,  8000147
+		t.done()
