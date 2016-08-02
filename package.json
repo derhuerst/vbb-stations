@@ -13,11 +13,6 @@
 	"repository":        "git://github.com/derhuerst/vbb-stations.git",
 	"bugs":              "https://github.com/derhuerst/vbb-stations/issues",
 	"license":           "ISC",
-	"dependencies": {
-		"ndjson":        "^1.4.3",
-		"stream-filter": "^1",
-		"stream-sink":   "^1.2"
-	},
 	"devDependencies": {
 		"got":           "^6.2",
 		"csv-parse":     "^1.0.2",
