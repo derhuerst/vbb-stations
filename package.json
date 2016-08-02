@@ -3,7 +3,7 @@
 	"description":       "A list of VBB stations.",
 	"version":           "1.0.0",
 	"main":              "index.js",
-	"files":             ["index.js", "data.ndjson", "vbb-logo.jpg"],
+	"files":             ["index.js", "data.json", "vbb-logo.jpg"],
 	"keywords": [
 		"vbb", "berlin", "brandenburg", "public transport",
 		"stations", "open data", "json", "ndjson", "gtfs"
@@ -21,7 +21,6 @@
 	"devDependencies": {
 		"got":           "^6.2",
 		"csv-parse":     "^1.0.2",
-		"ndjson":        "^1.4.3",
 		"so":            "^1.0.1",
 		"coffee-script": "^1.10",
 		"nodeunit":      "^0.9.1",

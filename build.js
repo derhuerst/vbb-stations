@@ -2,7 +2,6 @@
 
 const got    = require('got')
 const csv    = require('csv-parse')
-const ndjson = require('ndjson')
 const fs     = require('fs')
 const so     = require('so')
 const path   = require('path')
@@ -17,18 +16,11 @@ const fetchAndReduce = (url, acc, reducer) => new Promise((resolve, reject) => {
 	parser.on('data', (data) => reducer(acc, data))
 })
 
-const writeStationsAsNdjson = (path, stations) => new Promise((resolve, reject) => {
-	let formatter = ndjson.stringify().on('error', reject)
-	let file = fs.createWriteStream(path).on('error', reject)
-	formatter.pipe(file)
-	file.on('finish', resolve)
-
-	debugger
-	for (let id in stations) {
-		formatter.write(stations[id])
-	}
-	formatter.end()
-})
+const writeStationsAsJson = (path, stations) => new Promise((resolve, reject) =>
+	fs.writeFile(path, JSON.stringify(stations), (err) => {
+		if (err) reject(err)
+		else resolve()
+	}))
 
 
 
@@ -95,9 +87,9 @@ const build = so(function* () {
 	console.info('Fetching stops.')
 	yield reduceStopWeights(stations, lines, trips)
 
-	let file = path.join(__dirname, 'data.ndjson')
+	let file = path.join(__dirname, 'data.json')
 	console.info(`Writing stations to ${file}.`)
-	yield writeStationsAsNdjson(file, stations)
+	yield writeStationsAsJson(file, stations)
 })
 
 build().catch((err) => {
