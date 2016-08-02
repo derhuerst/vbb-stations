@@ -10,21 +10,20 @@
 	],
 	"author":            "Jannis R <mail@jannisr.de>",
 	"homepage":          "https://github.com/derhuerst/vbb-stations",
-	"repository":        "git://github.com/derhuerst/vbb-stations.git",
+	"repository":        "derhuerst/vbb-stations",
 	"bugs":              "https://github.com/derhuerst/vbb-stations/issues",
 	"license":           "ISC",
+	"engines":           {"node": ">=4"},
 	"devDependencies": {
 		"got":           "^6.2",
 		"csv-parse":     "^1.0.2",
 		"so":            "^1.0.1",
 		"coffee-script": "^1.10",
-		"nodeunit":      "^0.9.1",
-		"watchy":        "^0.6.6"
+		"nodeunit":      "^0.9.1"
 	},
 	"scripts": {
 		"build":         "node build.js",
 		"test":          "nodeunit --reporter minimal test.coffee",
-		"test:watch":    "watchy -s -w . nodeunit --reporter minimal test.coffee",
 		"prepublish":    "npm run build && npm test"
 	}
 }
