@@ -7,6 +7,7 @@ A **collection of all stations of the [Berlin Brandenburg public transport servi
 [![dependency status](https://img.shields.io/david/derhuerst/vbb-stations.svg)](https://david-dm.org/derhuerst/vbb-stations)
 [![dev dependency status](https://img.shields.io/david/dev/derhuerst/vbb-stations.svg)](https://david-dm.org/derhuerst/vbb-stations#info=devDependencies)
 ![ISC-licensed](https://img.shields.io/github/license/derhuerst/vbb-stations.svg)
+[![gitter channel](https://badges.gitter.im/derhuerst/vbb-rest.svg)](https://gitter.im/derhuerst/vbb-rest)
 
 
 ## Installing
