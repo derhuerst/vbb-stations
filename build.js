@@ -1,7 +1,7 @@
 'use strict'
 
 const got    = require('got')
-const csv    = require('csv-parse')
+const csv = require('csv-parser')
 const fs     = require('fs')
 const so     = require('so')
 const path   = require('path')
@@ -10,7 +10,7 @@ const path   = require('path')
 
 const fetchAndReduce = (url, acc, reducer) => new Promise((resolve, reject) => {
 	let download = got.stream(url).on('error', reject)
-	let parser = csv({columns: true}).on('error', reject)
+	let parser = csv().on('error', reject)
 	download.pipe(parser)
 	parser.on('end', () => resolve(acc))
 	parser.on('data', (data) => reducer(acc, data))
