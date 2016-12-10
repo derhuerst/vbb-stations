@@ -15,14 +15,18 @@
 	"license":           "ISC",
 	"engines":           {"node": ">=4"},
 	"devDependencies": {
-		"got":           "^6.2",
-		"csv-parser": "^1.11",
-		"so":            "^1.0.1",
+		"csv-parser": "^1.11.0",
+		"lodash.mapvalues": "^4.6.0",
+		"lodash.omit": "^4.5.0",
+		"vbb-short-station-name": "^0.2.0",
 		"coffee-script": "^1.10",
 		"nodeunit":      "^0.10.2"
 	},
 	"scripts": {
-		"build":         "node build.js",
+		"download": "./download.sh",
+		"convert": "node build.js",
+		"cleanup": "rm stops.txt routes.txt trips.txt stop_times.txt",
+		"build": "npm run download && npm run convert && npm run cleanup",
 		"test":          "nodeunit --reporter minimal test.coffee",
 		"prepublish":    "npm run build && npm test"
 	}
