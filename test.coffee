@@ -71,3 +71,8 @@ module.exports =
 		t.ok Array.isArray data.stops
 		t.strictEqual data.stops.length, 7
 		t.done()
+
+	'every station in full has an id': (t) ->
+		for _, stop of full
+			t.ok stop.id, 'missing id at ' + _
+		t.done()

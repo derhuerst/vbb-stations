@@ -35,7 +35,8 @@ const fetchStations = () => new Promise((yay, nay) => {
 	.pipe(csv()).on('error', nay)
 
 	.on('data', (stop) => {
-		if (stop.location_type === '0') { // a stop, part of a station
+		// a stop, part of a station
+		if (stop.location_type === '0' && stop.parent_station) {
 			const id = stop.stop_id
 			const stationId = stop.parent_station
 			if (!stations[stationId + '']) stations[stationId + ''] = newStation()
@@ -47,7 +48,8 @@ const fetchStations = () => new Promise((yay, nay) => {
 				latitude: parseFloat(stop.stop_lat),
 				longitude: parseFloat(stop.stop_lon)
 			})
-		} else if (stop.location_type === '1') { // a station
+		// a station
+		} else if (stop.location_type === '1' || !stop.parent_station) {
 			const id = stop.stop_id
 			if (!stations[id + '']) stations[id + ''] = newStation()
 			const station = stations[id + '']
