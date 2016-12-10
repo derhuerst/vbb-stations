@@ -22,8 +22,14 @@ npm install vbb-stations
 ```js
 const stations = require('vbb-stations')
 
-console.log(stations(9042101)) // query a single station
+console.log(stations('900000009101')) // query a single station
 console.log(stations({weight: 50})) // filter by property
+```
+
+`full.json` contains all stops of each station and unshortened names.
+
+```js
+require('vbb-stations')['900000009101']
 ```
 
 
