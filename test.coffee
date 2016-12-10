@@ -1,4 +1,5 @@
-stations  = require './index.js'
+stations  = require '.'
+full  = require './full.json'
 
 
 
@@ -55,4 +56,18 @@ module.exports =
 		data = stations id: 8000147
 		t.strictEqual data.length, 1
 		t.strictEqual data[0].id,  8000147
+		t.done()
+
+
+
+	'full': (t) ->
+		t.expect 7
+		data = full['900000009101'] # U Amrumer Str.
+		t.strictEqual data.id, '900000009101'
+		t.strictEqual data.name.slice(0, 14), 'U Amrumer Str.'
+		t.strictEqual data.latitude, 52.542202
+		t.strictEqual data.longitude, 13.349534
+		t.strictEqual data.weight, 3308
+		t.ok Array.isArray data.stops
+		t.strictEqual data.stops.length, 7
 		t.done()
