@@ -53,9 +53,9 @@ module.exports =
 
 	'filters correctly': (t) ->
 		t.expect 2
-		data = stations id: 8000147
+		data = stations id: '900000009101' # U Amrumer Str.
 		t.strictEqual data.length, 1
-		t.strictEqual data[0].id,  8000147
+		t.strictEqual data[0].id,  '900000009101'
 		t.done()
 
 
