@@ -29,7 +29,7 @@ console.log(stations({weight: 50})) // filter by property
 `full.json` contains all stops of each station and unshortened names.
 
 ```js
-require('vbb-stations')['900000009101']
+require('vbb-stations/full.json')['900000009101']
 ```
 
 
