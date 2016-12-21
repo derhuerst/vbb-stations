@@ -67,7 +67,7 @@ module.exports =
 		t.strictEqual data.name.slice(0, 14), 'U Amrumer Str.'
 		t.strictEqual data.latitude, 52.542202
 		t.strictEqual data.longitude, 13.349534
-		t.strictEqual data.weight, 3308
+		t.strictEqual data.weight, 4084
 		t.ok Array.isArray data.stops
 		t.strictEqual data.stops.length, 7
 		t.done()
