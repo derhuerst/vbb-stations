@@ -1,7 +1,7 @@
 {
 	"name":              "vbb-stations",
 	"description":       "A list of VBB stations.",
-	"version":           "3.1.0",
+	"version":           "3.2.0",
 	"main":              "index.js",
 	"files":             ["index.js", "data.json", "full.json", "vbb-logo.jpg"],
 	"keywords": [

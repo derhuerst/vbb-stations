@@ -1,6 +1,6 @@
 # vbb-stations 🚏
 
-A **collection of all stations of the [Berlin Brandenburg public transport service (VBB)](http://www.vbb.de/)**, computed from [open](http://daten.berlin.de/datensaetze/vbb-fahrplandaten-dezember-2016-bis-dezember-2017) [GTFS](https://developers.google.com/transit/gtfs/) [data](https://github.com/derhuerst/vbb-gtfs).
+A **collection of all stations of the [Berlin Brandenburg public transport service (VBB)](http://www.vbb.de/)**, computed from [open](http://daten.berlin.de/datensaetze/vbb-fahrplandaten-januar-2017-bis-dezember-2017) [GTFS](https://developers.google.com/transit/gtfs/) [data](https://vbb-gtfs.jannisr.de/).
 
 [![npm version](https://img.shields.io/npm/v/vbb-stations.svg)](https://www.npmjs.com/package/vbb-stations)
 [![build status](https://img.shields.io/travis/derhuerst/vbb-stations.svg)](https://travis-ci.org/derhuerst/vbb-stations)
@@ -39,9 +39,9 @@ require('vbb-stations/full.json')['900000009101']
 
 `pattern` can be one of the following:
 
-- a station ID, like `8000147`
+- a station ID, like `900000009101`
 - `'all'`
-- an object like `{weight: 50, name: 'Alt Pinnow'}`, with each property being mandatory
+- an object like `{weight: 42, name: 'Alt Pinnow'}`, with each property being mandatory
 
 
 ## Contributing
