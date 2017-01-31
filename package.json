@@ -20,15 +20,16 @@
 		"lodash.omit": "^4.5.0",
 		"vbb-short-station-name": "^0.2.0",
 		"vbb-parse-line": "^0.2.0",
-		"coffee-script": "^1.12.1",
-		"nodeunit": "^0.10.2"
+		"tape": "^4.6.5",
+		"is-roughly-equal": "^0.1.0",
+		"tap-min": "derhuerst/tap-min"
 	},
 	"scripts": {
 		"download": "./download.sh",
 		"convert": "node convert.js",
 		"cleanup": "rm stops.txt routes.txt trips.txt stop_times.txt",
 		"build": "npm run download && npm run convert && npm run cleanup",
-		"test":          "nodeunit --reporter minimal test.coffee",
-		"prepublish":    "npm run build && npm test"
+		"test": "node test.js | tap-min",
+		"prepublish": "npm run build && npm test"
 	}
 }
