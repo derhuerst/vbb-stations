@@ -1,7 +1,7 @@
 {
 	"name":              "vbb-stations",
 	"description":       "A list of VBB stations.",
-	"version":           "3.2.0",
+	"version":           "3.3.0",
 	"main":              "index.js",
 	"files":             ["index.js", "data.json", "full.json", "vbb-logo.jpg"],
 	"keywords": [
@@ -22,7 +22,7 @@
 		"vbb-parse-line": "^0.2.0",
 		"tape": "^4.6.3",
 		"is-roughly-equal": "^0.1.0",
-		"tap-min": "derhuerst/tap-min"
+		"tap-min": "^1.2.0"
 	},
 	"scripts": {
 		"download": "./download.sh",
