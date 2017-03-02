@@ -4,8 +4,6 @@ A **collection of all stations of the [Berlin Brandenburg public transport servi
 
 [![npm version](https://img.shields.io/npm/v/vbb-stations.svg)](https://www.npmjs.com/package/vbb-stations)
 [![build status](https://img.shields.io/travis/derhuerst/vbb-stations.svg)](https://travis-ci.org/derhuerst/vbb-stations)
-[![dependency status](https://img.shields.io/david/derhuerst/vbb-stations.svg)](https://david-dm.org/derhuerst/vbb-stations)
-[![dev dependency status](https://img.shields.io/david/dev/derhuerst/vbb-stations.svg)](https://david-dm.org/derhuerst/vbb-stations#info=devDependencies)
 ![ISC-licensed](https://img.shields.io/github/license/derhuerst/vbb-stations.svg)
 [![gitter channel](https://badges.gitter.im/derhuerst/vbb-rest.svg)](https://gitter.im/derhuerst/vbb-rest)
 
@@ -18,6 +16,25 @@ npm install vbb-stations
 
 
 ## Usage
+
+This module contains data in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format).
+
+```js
+[
+	{
+		type: 'station',
+		id: '900000009101',
+		name: 'U Amrumer Str.',
+		coordinates: {
+			latitude: 52.542202,
+			longitude: 13.349534
+		},
+		weight: 3563
+	}
+]
+```
+
+You can filter all stations by `id` or any property.
 
 ```js
 const stations = require('vbb-stations')
