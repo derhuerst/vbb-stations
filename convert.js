@@ -10,11 +10,14 @@ const parse = require('vbb-parse-line')
 
 
 
-const newStation = () => ({
-	id: null,
+const newStation = (id) => ({
+	type: 'station',
+	id,
 	name: null,
-	latitude: null,
-	longitude: null,
+	coordinates: {
+		latitude: null,
+		longitude: null
+	},
 	weight: 0,
 	stops: []
 })
@@ -40,26 +43,31 @@ const fetchStations = () => new Promise((yay, nay) => {
 		if (stop.location_type === '0' && stop.parent_station) {
 			const id = stop.stop_id
 			const stationId = stop.parent_station
-			if (!stations[stationId + '']) stations[stationId + ''] = newStation()
+			if (!stations[stationId + '']) stations[stationId + ''] = newStation(stationId)
 			const station = stations[stationId + '']
 			stops[id + ''] = station
 
 			station.stops.push({
-				id, name: stop.stop_name,
-				latitude: parseFloat(stop.stop_lat),
-				longitude: parseFloat(stop.stop_lon)
+				type: 'stop',
+				id,
+				name: stop.stop_name,
+				station: stationId,
+				coordinates: {
+					latitude: parseFloat(stop.stop_lat),
+					longitude: parseFloat(stop.stop_lon)
+				}
 			})
 		// a station
 		} else if (stop.location_type === '1' || !stop.parent_station) {
 			const id = stop.stop_id
-			if (!stations[id + '']) stations[id + ''] = newStation()
+			if (!stations[id + '']) stations[id + ''] = newStation(id)
 			const station = stations[id + '']
 
-			Object.assign(station, {
-				id, name: stop.stop_name,
+			station.name = stop.stop_name
+			station.coordinates = {
 				latitude: parseFloat(stop.stop_lat),
 				longitude: parseFloat(stop.stop_lon)
-			})
+			}
 		} else console.error('Unknown location_type', stop.location_type, 'at', stop.stop_id)
 	})
 

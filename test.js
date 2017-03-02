@@ -66,13 +66,14 @@ test('filters correctly', (t) => {
 })
 
 test('full', (t) => {
-	t.plan(8)
+	t.plan(9)
 	const s = full['900000009101'] // U Amrumer Str.
 
 	t.equal(s.id, '900000009101')
 	t.equal(s.name.slice(0, 14), 'U Amrumer Str.')
-	t.equal(s.latitude, 52.542202)
-	t.equal(s.longitude, 13.349534)
+	t.ok(s.coordinates)
+	t.equal(s.coordinates.latitude, 52.542202)
+	t.equal(s.coordinates.longitude, 13.349534)
 	t.ok(isRoughlyEqual(500, s.weight, 3263))
 	t.ok(Array.isArray(s.stops))
 	t.equal(s.stops.length, 7)
