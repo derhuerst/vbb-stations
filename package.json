@@ -1,7 +1,7 @@
 {
 	"name":              "vbb-stations",
 	"description":       "A list of VBB stations.",
-	"version":           "3.3.0",
+	"version":           "4.0.0",
 	"main":              "index.js",
 	"files":             ["index.js", "data.json", "full.json", "vbb-logo.jpg"],
 	"keywords": [
@@ -13,7 +13,7 @@
 	"repository":        "derhuerst/vbb-stations",
 	"bugs":              "https://github.com/derhuerst/vbb-stations/issues",
 	"license":           "ISC",
-	"engines":           {"node": ">=4"},
+	"engines":           {"node": ">=6"},
 	"devDependencies": {
 		"csv-parser": "^1.11.0",
 		"lodash.mapvalues": "^4.6.0",
