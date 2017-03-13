@@ -49,6 +49,12 @@ console.log(stations({weight: 50})) // filter by property
 require('vbb-stations/full.json')['900000009101']
 ```
 
+`names.json` contains only shortened names.
+
+```js
+require('vbb-stations/names.json')['900000009101'] // U Amrumer Str.
+```
+
 
 ## API
 

@@ -163,9 +163,12 @@ Promise.all([
 		return s
 	})
 
+	const names = mapValues(full, (s) => shorten(s.name))
+
 	return Promise.all([
 		writeJSON(full, 'full.json'),
-		writeJSON(data, 'data.json')
+		writeJSON(data, 'data.json'),
+		writeJSON(names, 'names.json')
 	])
 })
 .catch((err) => {
