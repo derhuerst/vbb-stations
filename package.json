@@ -28,7 +28,8 @@
 		"vbb-parse-line": "^0.2.0",
 		"tape": "^4.6.3",
 		"is-roughly-equal": "^0.1.0",
-		"tap-min": "^1.2.0"
+		"tap-min": "^1.2.0",
+		"vbb-mode-weights": "^0.1.0"
 	},
 	"scripts": {
 		"download": "cd build; ./download.sh",

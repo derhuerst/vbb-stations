@@ -17,7 +17,7 @@ npm install vbb-stations
 
 ## Usage
 
-This module contains data in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format).
+The [npm package](https://npmjs.com/vbb-stations) contains data in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format).
 
 ```js
 [

@@ -7,6 +7,7 @@ const mapValues = require('lodash.mapvalues')
 const omit = require('lodash.omit')
 const shorten = require('vbb-short-station-name')
 const parse = require('vbb-parse-line')
+const modeWeights = require('vbb-mode-weights')
 
 
 
@@ -77,17 +78,6 @@ const fetchStations = () => new Promise((yay, nay) => {
 })
 
 
-
-const modeWeights = {
-	  100:   1  // regional
-	, 102:   1  // regional
-	, 109:  .8  // suburban
-	, 400:  .7  // subway
-	, 700:  .25 // bus
-	, 3:    .25 // bus
-	, 900:  .35 // tram
-	, 1000: .6  // ferry
-}
 
 const fetchWeightsOfLines = () => new Promise((yay, nay) => {
 	const data = {}
