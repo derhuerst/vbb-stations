@@ -31,9 +31,9 @@
 		"tap-min": "^1.2.0"
 	},
 	"scripts": {
-		"download": "./download.sh",
-		"convert": "node convert.js",
-		"cleanup": "rm stops.txt routes.txt trips.txt stop_times.txt",
+		"download": "cd build; ./download.sh",
+		"convert": "node build/convert.js",
+		"cleanup": "rm build/*.txt",
 		"build": "npm run download && npm run convert && npm run cleanup",
 		"test": "node test.js | tap-min",
 		"prepublish": "npm run build && npm test"

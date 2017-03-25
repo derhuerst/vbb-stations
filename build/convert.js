@@ -22,8 +22,10 @@ const newStation = (id) => ({
 	stops: []
 })
 
+const readTXT = (file) => fs.createReadStream(path.join(__dirname, file))
+
 const writeJSON = (data, file) => new Promise((yay, nay) => {
-	fs.writeFile(path.join(__dirname, file), JSON.stringify(data), (err) => {
+	fs.writeFile(path.join(__dirname, '..', file), JSON.stringify(data), (err) => {
 		if (err) nay(err)
 		else yay()
 	})
@@ -35,7 +37,7 @@ const fetchStations = () => new Promise((yay, nay) => {
 	const stations = {}
 	const stops = {}
 
-	fs.createReadStream(path.join(__dirname, 'stops.txt')).on('error', nay)
+	readTXT('stops.txt').on('error', nay)
 	.pipe(csv()).on('error', nay)
 
 	.on('data', (stop) => {
@@ -90,7 +92,7 @@ const modeWeights = {
 const fetchWeightsOfLines = () => new Promise((yay, nay) => {
 	const data = {}
 
-	fs.createReadStream(path.join(__dirname, 'routes.txt')).on('error', nay)
+	readTXT('routes.txt').on('error', nay)
 	.pipe(csv()).on('error', nay)
 
 	.on('data', (line) => {
@@ -110,7 +112,7 @@ const fetchWeightsOfLines = () => new Promise((yay, nay) => {
 const fetchLinesOfTrips = () => new Promise((yay, nay) => {
 	const data = {}
 
-	fs.createReadStream(path.join(__dirname, 'trips.txt')).on('error', nay)
+	readTXT('trips.txt').on('error', nay)
 	.pipe(csv()).on('error', nay)
 
 	.on('data', (trip) => {
@@ -129,7 +131,7 @@ const arrivalWeights = {
 }
 
 const computeWeights = (stations, stationsByStop, lineWeights, linesByTrip) => new Promise((yay, nay) => {
-	fs.createReadStream(path.join(__dirname, 'stop_times.txt')).on('error', nay)
+	readTXT('stop_times.txt').on('error', nay)
 	.pipe(csv()).on('error', nay)
 
 	.on('data', (arrival) => {

@@ -5,10 +5,7 @@ Thumbs.db
 node_modules
 npm-debug.log
 
-stops.txt
-routes.txt
-trips.txt
-stop_times.txt
+build/*.txt
 
 full.json
 data.json
