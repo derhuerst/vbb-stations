@@ -1,5 +1,7 @@
 'use strict'
 
+const get = require('lodash.get')
+
 let data = require('./data.json')
 data = Object.keys(data).map((k) => data[k])
 
@@ -11,8 +13,7 @@ const filterById = (id) => (data) =>
 const filterByKeys = (pattern) => (data) => {
 	if (!data || 'object' !== typeof data) return false
 	for (let key in pattern) {
-		if (!data.hasOwnProperty(key)) return false
-		if (data[key] !== pattern[key]) return false
+		if (get(data, key) !== pattern[key]) return false
 	}
 	return true
 }

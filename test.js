@@ -39,13 +39,6 @@ test('filterByKeys', (t) => {
 		t.equal(p({a: '1'}), true)
 	})
 
-	t.test('compares only own properties', (t) => {
-		t.plan(1)
-		const p = filterByKeys({a: 'foo'})
-
-		t.equal(p(Object.create({a: 'foo'})), false)
-	})
-
 	t.test('compares multiple keys', (t) => {
 		t.plan(4)
 		const p = filterByKeys({a: 'foo', b: 'bar'})
@@ -55,11 +48,22 @@ test('filterByKeys', (t) => {
 		t.equal(p({a: 'foo', b: 'foo'}), false)
 		t.equal(p({a: 'foo', b: 'bar'}), true)
 	})
+
+	t.test('compares deeply', (t) => {
+		t.plan(2)
+		const p = filterByKeys({'a.b': 'foo'})
+
+		t.equal(p({a: {b: 'foo'}}), true)
+		t.equal(p({'a.b': 'foo'}), true)
+	})
 })
 
 test('filters correctly', (t) => {
 	t.plan(2)
-	const data = stations({id: '900000009101'}) // U Amrumer Str.
+	const data = stations({
+		id: '900000009101', // U Amrumer Str.
+		'coordinates.latitude': 52.542202
+	})
 
 	t.equal(data.length, 1)
 	t.equal(data[0].id,  '900000009101')
