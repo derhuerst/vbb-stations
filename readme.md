@@ -34,13 +34,16 @@ The [npm package](https://npmjs.com/vbb-stations) contains data in the [*Friendl
 ]
 ```
 
-You can filter all stations by `id` or any property.
+You can filter all stations by `id` or any property ([`lodash.get`](https://lodash.com/docs/#get) will be used).
 
 ```js
 const stations = require('vbb-stations')
 
 console.log(stations('900000009101')) // query a single station
-console.log(stations({weight: 50})) // filter by property
+console.log(stations({ // filter by property
+	weight: 3563,
+	'coordinates.latitude': 52.542202
+}))
 ```
 
 `full.json` contains all stops of each station and unshortened names.
