@@ -52,6 +52,35 @@ console.log(stations({ // filter by property
 require('vbb-stations/full.json')['900000009101']
 ```
 
+One entry looks like this:
+
+```js
+{
+	type: 'station',
+	id: '900000009101',
+	name: 'U Amrumer Str. (Berlin)',
+	coordinates: { latitude: 52.542202, longitude: 13.349534 },
+	weight: 3284.25,
+	stops: [
+		{
+			type: 'stop',
+			id: '070101000865',
+			name: 'U Amrumer Str. (Berlin)',
+			station: '900000009101',
+			coordinates: { latitude: 52.542202, longitude: 13.349534 }
+		},
+		// …
+		{
+			type: 'stop',
+			id: '070201092402',
+			name: 'U Amrumer Str. (Berlin)',
+			station: '900000009101',
+			coordinates: { latitude: 52.542202, longitude: 13.349534 }
+		}
+	]
+}
+```
+
 `names.json` contains only shortened names.
 
 ```js
