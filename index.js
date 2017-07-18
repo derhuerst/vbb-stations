@@ -24,7 +24,7 @@ const stations = (pattern) => {
 	let matcher
 	if (pattern === 'all' || pattern === undefined) matcher = () => true
 	else if ('object' === typeof pattern) matcher = filterByKeys(pattern)
-	else matcher = filterById(pattern)
+	else matcher = filterById(pattern) // todo: make this more efficient
 
 	return data.filter(matcher)
 }
