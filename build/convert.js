@@ -71,7 +71,9 @@ const fetchStations = () => new Promise((yay, nay) => {
 				latitude: parseFloat(stop.stop_lat),
 				longitude: parseFloat(stop.stop_lon)
 			}
-		} else console.error('Unknown location_type', stop.location_type, 'at', stop.stop_id)
+		} else {
+			console.error('Unknown location_type', stop.location_type, 'at', stop.stop_id)
+		}
 	})
 
 	.on('end', () => yay({stations, stops}))
@@ -126,7 +128,13 @@ const computeWeights = (stations, stationsByStop, lineWeights, linesByTrip) => n
 
 	.on('data', (arrival) => {
 		const station = stations[arrival.stop_id] || stationsByStop[arrival.stop_id]
-		if (!station) return console.error('Unknown station', arrival.stop_id)
+		if (!station) {
+			return console.error([
+				'Unknown station/stop', arrival.stop_id,
+				'at stop_times.txt arrival with trip ID', arrival.trip_id,
+				'sequence #', arrival.stop_sequence
+			].join(' '))
+		}
 
 		const weight = arrivalWeights[arrival.drop_off_type] || 0
 			+ arrivalWeights[arrival.pickup_type] || 0
