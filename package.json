@@ -38,6 +38,7 @@
 		"lodash.omit": "^4.5.0",
 		"vbb-short-station-name": "^0.3.0",
 		"vbb-parse-line": "^0.2.0",
+		"strip-bom-stream": "^3.0.0",
 		"tape": "^4.6.3",
 		"is-roughly-equal": "^0.1.0",
 		"tap-min": "^1.2.0",

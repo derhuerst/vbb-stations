@@ -2,6 +2,7 @@
 
 const fs = require('fs')
 const path = require('path')
+const stripBOM = require('strip-bom-stream')
 const csv = require('csv-parser')
 const mapValues = require('lodash.mapvalues')
 const omit = require('lodash.omit')
@@ -23,7 +24,10 @@ const newStation = (id) => ({
 	stops: []
 })
 
-const readTXT = (file) => fs.createReadStream(path.join(__dirname, file))
+const readTXT = (file) => {
+	return fs.createReadStream(path.join(__dirname, file))
+	.pipe(stripBOM())
+}
 
 const writeJSON = (data, file) => new Promise((yay, nay) => {
 	fs.writeFile(path.join(__dirname, '..', file), JSON.stringify(data), (err) => {
