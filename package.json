@@ -1,7 +1,7 @@
 {
 	"name": "vbb-stations",
 	"description": "A list of VBB stations.",
-	"version": "5.9.0",
+	"version": "6.0.0",
 	"main": "index.js",
 	"files": [
 		"index.js",
@@ -34,15 +34,15 @@
 	},
 	"devDependencies": {
 		"csv-parser": "^1.11.0",
+		"is-roughly-equal": "^0.1.0",
 		"lodash.mapvalues": "^4.6.0",
 		"lodash.omit": "^4.5.0",
-		"vbb-short-station-name": "^0.4.0",
-		"vbb-parse-line": "^0.2.0",
 		"strip-bom-stream": "^3.0.0",
-		"tape": "^4.6.3",
-		"is-roughly-equal": "^0.1.0",
 		"tap-min": "^1.2.0",
-		"vbb-mode-weights": "^0.1.0"
+		"tape": "^4.6.3",
+		"vbb-mode-weights": "^0.2.0",
+		"vbb-parse-line": "^0.2.0",
+		"vbb-short-station-name": "^0.4.0"
 	},
 	"scripts": {
 		"download": "cd build; ./download.sh",
