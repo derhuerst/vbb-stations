@@ -62,7 +62,7 @@ test('filters correctly', (t) => {
 	t.plan(2)
 	const data = stations({
 		id: '900000009101', // U Amrumer Str.
-		'coordinates.latitude': 52.542202
+		'location.latitude': 52.542202
 	})
 
 	t.equal(data.length, 1)
@@ -70,14 +70,16 @@ test('filters correctly', (t) => {
 })
 
 test('full', (t) => {
-	t.plan(9)
+	t.plan(11)
 	const s = full['900000009101'] // U Amrumer Str.
 
+	t.equal(s.type, 'station')
 	t.equal(s.id, '900000009101')
 	t.equal(s.name.slice(0, 14), 'U Amrumer Str.')
-	t.ok(s.coordinates)
-	t.equal(s.coordinates.latitude, 52.542202)
-	t.equal(s.coordinates.longitude, 13.349534)
+	t.ok(s.location)
+	t.equal(s.location.type, 'location')
+	t.equal(s.location.latitude, 52.542202)
+	t.equal(s.location.longitude, 13.349534)
 	t.ok(isRoughlyEqual(500, s.weight, 3263))
 	t.ok(Array.isArray(s.stops))
 	t.equal(s.stops.length, 7)

@@ -1,6 +1,6 @@
 # vbb-stations 🚏
 
-A **collection of all stations of the [Berlin Brandenburg public transport service (VBB)](http://www.vbb.de/)**, computed from [open](https://daten.berlin.de/datensaetze/vbb-fahrplandaten-mai-2017-bis-dezember-2017) [GTFS](https://developers.google.com/transit/gtfs/) [data](https://vbb-gtfs.jannisr.de/).
+A **collection of all stations of the [Berlin Brandenburg public transport service (VBB)](http://www.vbb.de/)**, computed from [open](https://daten.berlin.de/datensaetze/vbb-fahrplandaten-dezember-2017-bis-dezember-2018) [GTFS](https://developers.google.com/transit/gtfs/) [data](https://vbb-gtfs.jannisr.de/).
 
 [![npm version](https://img.shields.io/npm/v/vbb-stations.svg)](https://www.npmjs.com/package/vbb-stations)
 [![build status](https://img.shields.io/travis/derhuerst/vbb-stations.svg)](https://travis-ci.org/derhuerst/vbb-stations)
@@ -17,7 +17,7 @@ npm install vbb-stations
 
 ## Usage
 
-The [npm package](https://npmjs.com/vbb-stations) contains data in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format). `weight` is the sum of all arrivals & departures at a station, weighted by mode of transport.
+The [npm package](https://npmjs.com/vbb-stations) contains [*Friendly Public Transport Format* 1.0.1](https://github.com/public-transport/friendly-public-transport-format/blob/1.0.1/spec/readme.md) `station`s and `stop`s. `weight` is the sum of all arrivals & departures at a station, weighted by mode of transport.
 
 ```js
 [
@@ -25,7 +25,8 @@ The [npm package](https://npmjs.com/vbb-stations) contains data in the [*Friendl
 		type: 'station',
 		id: '900000009101',
 		name: 'U Amrumer Str.',
-		coordinates: {
+		location: {
+			type: 'location',
 			latitude: 52.542202,
 			longitude: 13.349534
 		},
@@ -42,7 +43,7 @@ const stations = require('vbb-stations')
 console.log(stations('900000009101')) // query a single station
 console.log(stations({ // filter by property
 	weight: 3563,
-	'coordinates.latitude': 52.542202
+	'location.latitude': 52.542202
 }))
 ```
 
@@ -59,7 +60,11 @@ One entry looks like this:
 	type: 'station',
 	id: '900000009101',
 	name: 'U Amrumer Str. (Berlin)',
-	coordinates: { latitude: 52.542202, longitude: 13.349534 },
+	location: {
+		type: 'location',
+		latitude: 52.542202,
+		longitude: 13.349534
+	},
 	weight: 3284.25,
 	stops: [
 		{
@@ -67,7 +72,11 @@ One entry looks like this:
 			id: '070101000865',
 			name: 'U Amrumer Str. (Berlin)',
 			station: '900000009101',
-			coordinates: { latitude: 52.542202, longitude: 13.349534 }
+			location: {
+				type: 'location',
+				latitude: 52.542202,
+				longitude: 13.349534
+			}
 		},
 		// …
 		{
@@ -75,7 +84,11 @@ One entry looks like this:
 			id: '070201092402',
 			name: 'U Amrumer Str. (Berlin)',
 			station: '900000009101',
-			coordinates: { latitude: 52.542202, longitude: 13.349534 }
+			location: {
+				type: 'location',
+				latitude: 52.542202,
+				longitude: 13.349534
+			}
 		}
 	]
 }
