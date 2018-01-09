@@ -16,7 +16,8 @@ const newStation = (id) => ({
 	type: 'station',
 	id,
 	name: null,
-	coordinates: {
+	location: {
+		type: 'location',
 		latitude: null,
 		longitude: null
 	},
@@ -39,11 +40,11 @@ const writeJSON = (data, file) => new Promise((yay, nay) => {
 
 
 const fetchStations = () => new Promise((yay, nay) => {
-	const stations = {}
-	const stops = {}
+	const stations = Object.create(null)
+	const stops = Object.create(null)
 
-	readTXT('stops.txt').on('error', nay)
-	.pipe(csv()).on('error', nay)
+	readTXT('stops.txt').once('error', nay)
+	.pipe(csv()).once('error', nay)
 
 	.on('data', (stop) => {
 		// a stop, part of a station
@@ -59,7 +60,8 @@ const fetchStations = () => new Promise((yay, nay) => {
 				id,
 				name: stop.stop_name,
 				station: stationId,
-				coordinates: {
+				location: {
+					type: 'location',
 					latitude: parseFloat(stop.stop_lat),
 					longitude: parseFloat(stop.stop_lon)
 				}
@@ -71,7 +73,8 @@ const fetchStations = () => new Promise((yay, nay) => {
 			const station = stations[id + '']
 
 			station.name = stop.stop_name
-			station.coordinates = {
+			station.location = {
+				type: 'location',
 				latitude: parseFloat(stop.stop_lat),
 				longitude: parseFloat(stop.stop_lon)
 			}
@@ -86,7 +89,7 @@ const fetchStations = () => new Promise((yay, nay) => {
 
 
 const fetchWeightsOfLines = () => new Promise((yay, nay) => {
-	const data = {}
+	const data = Object.create(null)
 
 	readTXT('routes.txt').on('error', nay)
 	.pipe(csv()).on('error', nay)
@@ -106,7 +109,7 @@ const fetchWeightsOfLines = () => new Promise((yay, nay) => {
 })
 
 const fetchLinesOfTrips = () => new Promise((yay, nay) => {
-	const data = {}
+	const data = Object.create(null)
 
 	readTXT('trips.txt').on('error', nay)
 	.pipe(csv()).on('error', nay)
@@ -161,11 +164,17 @@ Promise.all([
 	computeWeights(stations, stops, lineWeights, linesByTrip)
 )
 .then((full) => {
-	const data = mapValues(full, (s) => {
-		s = omit(s, ['stops'])
-		s.name = shorten(s.name)
-		return s
-	})
+	const data = []
+	for (let id in full) {
+		const s = full[id]
+		data.push([
+			s.id,
+			s.name,
+			s.weight,
+			s.location.latitude,
+			s.location.longitude
+		])
+	}
 
 	const names = mapValues(full, (s) => shorten(s.name))
 

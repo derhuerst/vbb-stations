@@ -2,8 +2,22 @@
 
 const get = require('lodash.get')
 
-let data = require('./data.json')
-data = Object.keys(data).map((k) => data[k])
+let rawData = require('./data.json')
+const data = []
+for (let s of rawData) {
+	data.push({
+		type: 'station',
+		id: s[0],
+		name: s[1],
+		location: {
+			type: 'location',
+			latitude: s[3],
+			longitude: s[4]
+		},
+		weight: s[2]
+	})
+}
+rawData = null
 
 
 
