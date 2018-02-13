@@ -169,7 +169,7 @@ Promise.all([
 		const s = full[id]
 		data.push([
 			s.id,
-			s.name,
+			shorten(s.name),
 			s.weight,
 			s.location.latitude,
 			s.location.longitude

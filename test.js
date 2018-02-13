@@ -2,6 +2,7 @@
 
 const test = require('tape')
 const isRoughlyEqual = require('is-roughly-equal')
+const shorten = require('vbb-short-station-name')
 
 const stations = require('.')
 const {filterById, filterByKeys} = stations
@@ -67,6 +68,14 @@ test('filters correctly', (t) => {
 
 	t.equal(data.length, 1)
 	t.equal(data[0].id,  '900000009101')
+})
+
+test('contains shortened station names', (t) => {
+	t.plan(2)
+	const [amrumerStr] = stations('900000009101') // U Amrumer Str.
+
+	t.ok(amrumerStr)
+	if (amrumerStr) t.equal(amrumerStr.name, shorten(amrumerStr.name))
 })
 
 test('full', (t) => {
