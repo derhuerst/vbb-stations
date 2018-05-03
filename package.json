@@ -43,7 +43,7 @@
 		"tape": "^4.6.3",
 		"vbb-mode-weights": "^0.2.0",
 		"vbb-parse-line": "^0.3.0",
-		"vbb-short-station-name": "^0.4.0"
+		"vbb-short-station-name": "^1.0.0"
 	},
 	"scripts": {
 		"download": "cd build; ./download.sh",
