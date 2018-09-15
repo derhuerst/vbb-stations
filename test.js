@@ -89,7 +89,7 @@ test('full', (t) => {
 	t.equal(s.location.type, 'location')
 	t.equal(s.location.latitude, 52.542202)
 	t.equal(s.location.longitude, 13.349534)
-	t.ok(isRoughlyEqual(500, s.weight, 3263))
+	t.ok(isRoughlyEqual(500, s.weight, 5220))
 	t.ok(Array.isArray(s.stops))
 	t.equal(s.stops.length, 7)
 
