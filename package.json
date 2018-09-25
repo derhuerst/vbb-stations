@@ -34,7 +34,7 @@
 		"lodash.get": "^4.4.2"
 	},
 	"devDependencies": {
-		"csv-parser": "^1.11.0",
+		"csv-parser": "^2.0.0",
 		"is-roughly-equal": "^0.1.0",
 		"lodash.mapvalues": "^4.6.0",
 		"lodash.omit": "^4.5.0",
