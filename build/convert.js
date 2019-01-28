@@ -143,8 +143,8 @@ const computeWeights = (stations, stationsByStop, lineWeights, linesByTrip) => n
 			].join(' '))
 		}
 
-		const weight = arrivalWeights[arrival.drop_off_type] || 0
-			+ arrivalWeights[arrival.pickup_type] || 0
+		const weight = arrivalWeights[arrival.drop_off_type || '0'] || 0
+			+ arrivalWeights[arrival.pickup_type || '0'] || 0
 		const lineWeight = lineWeights[linesByTrip[arrival.trip_id]]
 
 		station.weight += lineWeight * weight
