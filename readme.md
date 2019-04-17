@@ -18,7 +18,7 @@ npm install vbb-stations
 
 ## Usage
 
-The [npm package](https://npmjs.com/vbb-stations) contains [*Friendly Public Transport Format* 1.0.1](https://github.com/public-transport/friendly-public-transport-format/blob/1.0.1/spec/readme.md) `station`s and `stop`s. `weight` is the sum of all arrivals & departures at a station, weighted by mode of transport.
+The [npm package](https://npmjs.com/vbb-stations) contains [*Friendly Public Transport Format* 1.2.1](https://github.com/public-transport/friendly-public-transport-format/blob/1.2.1/spec/readme.md) `station`s and `stop`s. `weight` is the sum of all arrivals & departures at a station, weighted by mode of transport.
 
 ```js
 [
