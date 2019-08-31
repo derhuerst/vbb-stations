@@ -25,7 +25,7 @@ const newStation = (id) => ({
 	stops: []
 })
 
-const readTXT = (file) => {
+const readCsv = (file) => {
 	return fs.createReadStream(path.join(__dirname, file))
 	.pipe(stripBOM())
 }
@@ -43,7 +43,7 @@ const fetchStations = () => new Promise((yay, nay) => {
 	const stations = Object.create(null)
 	const stops = Object.create(null)
 
-	readTXT('stops.txt').once('error', nay)
+	readCsv('stops.csv').once('error', nay)
 	.pipe(csv()).once('error', nay)
 
 	.on('data', (stop) => {
@@ -91,7 +91,7 @@ const fetchStations = () => new Promise((yay, nay) => {
 const fetchWeightsOfLines = () => new Promise((yay, nay) => {
 	const data = Object.create(null)
 
-	readTXT('routes.txt').on('error', nay)
+	readCsv('routes.csv').on('error', nay)
 	.pipe(csv()).on('error', nay)
 
 	.on('data', (line) => {
@@ -111,7 +111,7 @@ const fetchWeightsOfLines = () => new Promise((yay, nay) => {
 const fetchLinesOfTrips = () => new Promise((yay, nay) => {
 	const data = Object.create(null)
 
-	readTXT('trips.txt').on('error', nay)
+	readCsv('trips.csv').on('error', nay)
 	.pipe(csv()).on('error', nay)
 
 	.on('data', (trip) => {
@@ -130,7 +130,7 @@ const arrivalWeights = {
 }
 
 const computeWeights = (stations, stationsByStop, lineWeights, linesByTrip) => new Promise((yay, nay) => {
-	readTXT('stop_times.txt').on('error', nay)
+	readCsv('stop_times.csv').on('error', nay)
 	.pipe(csv()).on('error', nay)
 
 	.on('data', (arrival) => {
@@ -138,7 +138,7 @@ const computeWeights = (stations, stationsByStop, lineWeights, linesByTrip) => n
 		if (!station) {
 			return console.error([
 				'Unknown station/stop', arrival.stop_id,
-				'at stop_times.txt arrival with trip ID', arrival.trip_id,
+				'at stop_times.csv arrival with trip ID', arrival.trip_id,
 				'sequence #', arrival.stop_sequence
 			].join(' '))
 		}

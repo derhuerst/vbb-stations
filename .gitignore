@@ -7,7 +7,7 @@ npm-debug.log
 
 /package-lock.json
 
-build/*.txt
+build/*.csv
 
 full.json
 data.json

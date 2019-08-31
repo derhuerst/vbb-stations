@@ -1,7 +1,7 @@
 {
 	"name": "vbb-stations",
 	"description": "A list of VBB stations.",
-	"version": "6.10.0",
+	"version": "6.11.0",
 	"main": "index.js",
 	"files": [
 		"index.js",
@@ -48,7 +48,7 @@
 	"scripts": {
 		"download": "cd build; ./download.sh",
 		"convert": "node build/convert.js",
-		"cleanup": "rm build/*.txt",
+		"cleanup": "rm build/*.csv",
 		"build": "npm run download && npm run convert && npm run cleanup",
 		"test": "node test.js | tap-min",
 		"prepublishOnly": "npm run build && npm test"
