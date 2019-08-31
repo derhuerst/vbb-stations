@@ -1,7 +1,7 @@
 {
 	"name": "vbb-stations",
 	"description": "A list of VBB stations.",
-	"version": "6.11.0",
+	"version": "7.0.0",
 	"main": "index.js",
 	"files": [
 		"index.js",
@@ -28,7 +28,7 @@
 	"bugs": "https://github.com/derhuerst/vbb-stations/issues",
 	"license": "ISC",
 	"engines": {
-		"node": ">=6"
+		"node": ">=8"
 	},
 	"dependencies": {
 		"lodash.get": "^4.4.2"
@@ -38,11 +38,11 @@
 		"is-roughly-equal": "^0.1.0",
 		"lodash.mapvalues": "^4.6.0",
 		"lodash.omit": "^4.5.0",
-		"strip-bom-stream": "^3.0.0",
-		"tap-min": "^1.2.0",
+		"strip-bom-stream": "^4.0.0",
+		"tap-min": "^2.0.0",
 		"tape": "^4.6.3",
 		"vbb-mode-weights": "^0.2.0",
-		"vbb-parse-line": "^0.3.0",
+		"vbb-parse-line": "^1.0.0",
 		"vbb-short-station-name": "^1.0.0"
 	},
 	"scripts": {
