@@ -1,6 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
-curl -L --compressed https://vbb-gtfs.jannisr.de/latest/stops.csv > stops.csv
-curl -L --compressed https://vbb-gtfs.jannisr.de/latest/routes.csv > routes.csv
-curl -L --compressed https://vbb-gtfs.jannisr.de/latest/trips.csv > trips.csv
-curl -L --compressed https://vbb-gtfs.jannisr.de/latest/stop_times.csv > stop_times.csv
+set -e
+
+cd $(dirname $0)
+
+base_url='https://vbb-gtfs.jannisr.de/latest/'
+download () {
+	curl -z -L --compressed --etag-compare "$1.etag" --etag-save "$1.etag" $base_url$1 -o $1
+}
+
+download 'stops.csv'
+download 'routes.csv'
+download 'trips.csv'
+download 'stop_times.csv'
+
+ls -lh *.csv
