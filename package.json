@@ -40,7 +40,7 @@
 		"lodash.omit": "^4.5.0",
 		"strip-bom-stream": "^4.0.0",
 		"tap-min": "^2.0.0",
-		"tape": "^4.6.3",
+		"tape": "^5.0.0",
 		"vbb-mode-weights": "^0.2.0",
 		"vbb-parse-line": "^1.0.0",
 		"vbb-short-station-name": "^1.0.0"
