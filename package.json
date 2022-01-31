@@ -28,13 +28,13 @@
 	"bugs": "https://github.com/derhuerst/vbb-stations/issues",
 	"license": "ISC",
 	"engines": {
-		"node": ">=8"
+		"node": ">=16"
 	},
 	"dependencies": {
 		"lodash.get": "^4.4.2"
 	},
 	"devDependencies": {
-		"csv-parser": "^2.0.0",
+		"csv-parser": "^3.0.0",
 		"is-roughly-equal": "^0.1.0",
 		"lodash.mapvalues": "^4.6.0",
 		"lodash.omit": "^4.5.0",
