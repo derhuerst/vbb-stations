@@ -124,9 +124,9 @@ const fetchLinesOfTrips = () => new Promise((yay, nay) => {
 })
 
 const arrivalWeights = {
-	  0: 5 // regular stop
-	, 2: 1 // call agency
-	, 3: 3 // talk to driver
+	0: 5, // regular stop
+	2: 1, // call agency
+	3: 3, // talk to driver
 }
 
 const computeWeights = (stations, stationsByStop, lineWeights, linesByTrip) => new Promise((yay, nay) => {
