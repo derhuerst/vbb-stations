@@ -79,7 +79,7 @@ const fetchStations = () => new Promise((yay, nay) => {
 				longitude: parseFloat(stop.stop_lon)
 			}
 		} else {
-			console.error('Unknown location_type', stop.location_type, 'at', stop.stop_id)
+			console.warn('ignoring', stop.stop_id, 'with unknown/invalid location_type', stop.location_type)
 		}
 	})
 
