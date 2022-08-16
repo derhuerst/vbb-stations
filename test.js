@@ -89,7 +89,7 @@ test('full', (t) => {
 	t.equal(s.location.type, 'location')
 	t.equal(s.location.latitude, 52.542202)
 	t.equal(s.location.longitude, 13.349534)
-	t.ok(isRoughlyEqual(1000, s.weight, 3000))
+	t.ok(isRoughlyEqual(2500, s.weight, 4000))
 	t.ok(Array.isArray(s.stops))
 	// todo: actually it's 7, but the VBB GTFS data has a bug
 	// t.equal(s.stops.length, 7)
