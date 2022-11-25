@@ -98,6 +98,7 @@ const fetchWeightsOfLines = async () => {
 		const parsed = parse(line.route_short_name)
 		if (parsed.type === 'bus' && (parsed.express || parsed.express))
 			weight += .05
+		// todo: RE vs RB
 
 		const id = line.route_id
 		if (!data[id + '']) data[id + ''] = 0
