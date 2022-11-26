@@ -36,6 +36,7 @@
 	"devDependencies": {
 		"csv-parser": "^3.0.0",
 		"eslint": "^8.8.0",
+		"gtfs-utils": "^5.1.0",
 		"is-roughly-equal": "^0.1.0",
 		"lodash.mapvalues": "^4.6.0",
 		"lodash.omit": "^4.5.0",

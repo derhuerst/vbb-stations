@@ -1,16 +1,19 @@
 'use strict'
 
-const fs = require('fs')
+const readCsv = require('gtfs-utils/read-csv')
 const path = require('path')
-const stripBOM = require('strip-bom-stream')
-const csv = require('csv-parser')
+const fs = require('fs')
+const {
+	ENTRANCE_EXIT,
+	GENERIC_NODE,
+	BOARDING_AREA,
+} = require('gtfs-utils/lib/location-types')
 const mapValues = require('lodash.mapvalues')
-const omit = require('lodash.omit')
 const shorten = require('vbb-short-station-name')
 const parse = require('vbb-parse-line')
 const modeWeights = require('vbb-mode-weights')
 
-
+const readFile = name => readCsv(path.join(__dirname, name + '.csv'))
 
 const newStation = (id) => ({
 	type: 'station',
@@ -25,11 +28,6 @@ const newStation = (id) => ({
 	stops: []
 })
 
-const readCsv = (file) => {
-	return fs.createReadStream(path.join(__dirname, file))
-	.pipe(stripBOM())
-}
-
 const writeJSON = (data, file) => new Promise((yay, nay) => {
 	fs.writeFile(path.join(__dirname, '..', file), JSON.stringify(data), (err) => {
 		if (err) nay(err)
@@ -39,14 +37,15 @@ const writeJSON = (data, file) => new Promise((yay, nay) => {
 
 
 
-const fetchStations = () => new Promise((yay, nay) => {
+const fetchStations = async () => {
 	const stations = Object.create(null)
 	const stops = Object.create(null)
 
-	readCsv('stops.csv').once('error', nay)
-	.pipe(csv()).once('error', nay)
+	for await (const stop of await readFile('stops')) {
+		if (stop.location_type === ENTRANCE_EXIT) continue
+		if (stop.location_type === GENERIC_NODE) continue
+		if (stop.location_type === BOARDING_AREA) continue
 
-	.on('data', (stop) => {
 		// a stop, part of a station
 		if (stop.location_type === '0' && stop.parent_station) {
 			const id = stop.stop_id
@@ -81,20 +80,20 @@ const fetchStations = () => new Promise((yay, nay) => {
 		} else {
 			console.warn('ignoring', stop.stop_id, 'with unknown/invalid location_type', stop.location_type)
 		}
-	})
+	}
 
-	.on('end', () => yay({stations, stops}))
-})
+	return {
+		stations,
+		stops,
+	}
+}
 
 
 
-const fetchWeightsOfLines = () => new Promise((yay, nay) => {
+const fetchWeightsOfLines = async () => {
 	const data = Object.create(null)
 
-	readCsv('routes.csv').on('error', nay)
-	.pipe(csv()).on('error', nay)
-
-	.on('data', (line) => {
+	for await (const line of await readFile('routes')) {
 		let weight = modeWeights[line.route_type] || .2
 		const parsed = parse(line.route_short_name)
 		if (parsed.type === 'bus' && (parsed.express || parsed.express))
@@ -103,25 +102,22 @@ const fetchWeightsOfLines = () => new Promise((yay, nay) => {
 		const id = line.route_id
 		if (!data[id + '']) data[id + ''] = 0
 		data[id + ''] += weight
-	})
+	}
 
-	.on('end', () => yay(data))
-})
+	return data
+}
 
-const fetchLinesOfTrips = () => new Promise((yay, nay) => {
+const fetchLinesOfTrips = async () => {
 	const data = Object.create(null)
 
-	readCsv('trips.csv').on('error', nay)
-	.pipe(csv()).on('error', nay)
-
-	.on('data', (trip) => {
+	for await (const trip of await readFile('trips')) {
 		const id = trip.trip_id
 		const lineId = trip.route_id
 		data[id + ''] = lineId
-	})
+	}
 
-	.on('end', () => yay(data))
-})
+	return data
+}
 
 const arrivalWeights = {
 	0: 5, // regular stop
@@ -129,11 +125,8 @@ const arrivalWeights = {
 	3: 3, // talk to driver
 }
 
-const computeWeights = (stations, stationsByStop, lineWeights, linesByTrip) => new Promise((yay, nay) => {
-	readCsv('stop_times.csv').on('error', nay)
-	.pipe(csv()).on('error', nay)
-
-	.on('data', (arrival) => {
+const addWeightsToStations = async (stations, stationsByStop, lineWeights, linesByTrip) => {
+	for await (const arrival of await readFile('stop_times')) {
 		const station = stations[arrival.stop_id] || stationsByStop[arrival.stop_id]
 		if (!station) {
 			return console.error([
@@ -148,22 +141,23 @@ const computeWeights = (stations, stationsByStop, lineWeights, linesByTrip) => n
 		const lineWeight = lineWeights[linesByTrip[arrival.trip_id]]
 
 		station.weight += lineWeight * weight
-	})
+	}
+}
 
-	.on('end', () => yay(stations))
-})
+;(async () => {
+	const [
+		{stations, stops},
+		lineWeights,
+		linesByTrip,
+	] = await Promise.all([
+		fetchStations(),
+		fetchWeightsOfLines(),
+		fetchLinesOfTrips()
+	])
 
+	await addWeightsToStations(stations, stops, lineWeights, linesByTrip)
+	const full = stations
 
-
-Promise.all([
-	fetchStations(),
-	fetchWeightsOfLines(),
-	fetchLinesOfTrips()
-])
-.then(([{stations, stops}, lineWeights, linesByTrip]) =>
-	computeWeights(stations, stops, lineWeights, linesByTrip)
-)
-.then((full) => {
 	const data = []
 	for (let id in full) {
 		const s = full[id]
@@ -178,12 +172,12 @@ Promise.all([
 
 	const names = mapValues(full, (s) => shorten(s.name))
 
-	return Promise.all([
+	await Promise.all([
 		writeJSON(full, 'full.json'),
 		writeJSON(data, 'data.json'),
 		writeJSON(names, 'names.json')
 	])
-})
+})()
 .catch((err) => {
 	console.error(err)
 	process.exit(1)
