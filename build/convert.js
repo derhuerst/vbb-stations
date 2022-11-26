@@ -24,7 +24,7 @@ const newStation = (id) => ({
 		latitude: null,
 		longitude: null
 	},
-	weight: 0,
+	weight: 3, // we add a base weight (smoothing)
 	stops: []
 })
 
