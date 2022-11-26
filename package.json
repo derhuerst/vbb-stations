@@ -50,7 +50,7 @@
 		"lint": "eslint .",
 		"download": "cd build; ./download.sh",
 		"convert": "node build/convert.js",
-		"cleanup": "rm build/*.csv",
+		"cleanup": "rm build/*.csv build/*.csv.etag",
 		"build": "npm run download && npm run convert && npm run cleanup",
 		"test": "node test.js | tap-min",
 		"prepublishOnly": "npm run lint && npm run build && npm test"
