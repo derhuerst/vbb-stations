@@ -23,14 +23,14 @@ The [npm package](https://npmjs.com/vbb-stations) contains [*Friendly Public Tra
 [
 	{
 		type: 'station',
-		id: '900000009101',
+		id: 'de:11000:900009101',
 		name: 'U Amrumer Str.',
 		location: {
 			type: 'location',
 			latitude: 52.542202,
 			longitude: 13.349534
 		},
-		weight: 3563
+		weight: 2474,
 	}
 ]
 ```
@@ -40,9 +40,9 @@ You can filter all stations by `id` or any property ([`lodash.get`](https://loda
 ```js
 const stations = require('vbb-stations')
 
-console.log(stations('900000009101')) // query a single station
+console.log(stations('de:11000:900009101')) // query a single station
 console.log(stations({ // filter by property
-	weight: 3563,
+	weight: 2474,
 	'location.latitude': 52.542202
 }))
 ```
@@ -50,7 +50,7 @@ console.log(stations({ // filter by property
 `full.json` contains all stops of each station and unshortened names.
 
 ```js
-require('vbb-stations/full.json')['900000009101']
+require('vbb-stations/full.json')['de:11000:900009101']
 ```
 
 One entry looks like this:
@@ -58,20 +58,20 @@ One entry looks like this:
 ```js
 {
 	type: 'station',
-	id: '900000009101',
+	id: 'de:11000:900009101',
 	name: 'U Amrumer Str. (Berlin)',
 	location: {
 		type: 'location',
 		latitude: 52.542202,
 		longitude: 13.349534
 	},
-	weight: 3284.25,
+	weight: 2474,
 	stops: [
 		{
 			type: 'stop',
-			id: '070101000865',
+			id: 'de:11000:900009101::1',
 			name: 'U Amrumer Str. (Berlin)',
-			station: '900000009101',
+			station: 'de:11000:900009101',
 			location: {
 				type: 'location',
 				latitude: 52.542202,
@@ -81,9 +81,9 @@ One entry looks like this:
 		// …
 		{
 			type: 'stop',
-			id: '070201092402',
+			id: 'de:11000:900009101::2',
 			name: 'U Amrumer Str. (Berlin)',
-			station: '900000009101',
+			station: 'de:11000:900009101',
 			location: {
 				type: 'location',
 				latitude: 52.542202,
@@ -97,7 +97,7 @@ One entry looks like this:
 `names.json` contains only shortened names.
 
 ```js
-require('vbb-stations/names.json')['900000009101'] // U Amrumer Str.
+require('vbb-stations/names.json')['de:11000:900009101'] // U Amrumer Str.
 ```
 
 
@@ -107,7 +107,7 @@ require('vbb-stations/names.json')['900000009101'] // U Amrumer Str.
 
 `pattern` can be one of the following:
 
-- a station ID, like `900000009101`
+- a station ID, like `de:11000:900009101`
 - `'all'`
 - an object like `{weight: 42, name: 'Alt Pinnow'}`, with each property being mandatory
 
