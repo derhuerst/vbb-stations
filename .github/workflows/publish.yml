@@ -9,7 +9,12 @@ permissions:
   id-token: write # for OIDC-based publishing to npm
 
 jobs:
-  test-build-publish:
+  test:
+    name: run tests
+    uses: './.github/workflows/test.yml'
+
+  build-publish:
+    needs: [test]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,7 +32,6 @@ jobs:
     - run: npm install
 
     - run: npm run build
-    - run: npm test
 
     - name: bump version
       run: |
