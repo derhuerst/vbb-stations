@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - '22'
+          - '24'
 
     steps:
     - name: checkout
@@ -23,9 +23,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    # for OIDC-based publishing to npm
-    - name: setup npm v11
-      run: npm install -g npm@11
 
     - run: npm install
 
