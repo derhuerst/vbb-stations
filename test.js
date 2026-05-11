@@ -1,12 +1,9 @@
-'use strict'
+import test from 'tape'
+import isRoughlyEqual from 'is-roughly-equal'
+import shorten from 'vbb-short-station-name'
 
-const test = require('tape')
-const isRoughlyEqual = require('is-roughly-equal')
-const shorten = require('vbb-short-station-name')
-
-const stations = require('.')
-const {filterById, filterByKeys} = stations
-const full = require('./full.json')
+import {stations, filterById, filterByKeys} from './index.js'
+import full from './full.json' with {type: 'json'}
 
 
 

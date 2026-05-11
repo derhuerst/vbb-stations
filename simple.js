@@ -1,6 +1,4 @@
-'use strict'
-
-let rawData = require('./data.json')
+let {default: rawData} = await import('./data.json', {with: {type: 'json'}})
 
 const simple = []
 for (let s of rawData) {
@@ -19,4 +17,7 @@ for (let s of rawData) {
 
 // eslint-disable-next-line no-useless-assignment
 rawData = null // allow for gc
-module.exports = simple
+
+export {
+	simple as stations,
+}

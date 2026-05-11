@@ -1,19 +1,17 @@
-'use strict'
-
-const readCsv = require('gtfs-utils/read-csv')
-const path = require('path')
-const fs = require('fs')
-const {
+import readCsv from 'gtfs-utils/read-csv.js'
+import {join as pathJoin} from 'node:path'
+import {writeFile} from 'node:fs'
+import {
 	ENTRANCE_EXIT,
 	GENERIC_NODE,
 	BOARDING_AREA,
-} = require('gtfs-utils/lib/location-types')
-const mapValues = require('lodash.mapvalues')
-const shorten = require('vbb-short-station-name')
-const parse = require('vbb-parse-line')
-const modeWeights = require('vbb-mode-weights')
+} from 'gtfs-utils/lib/location-types.js'
+import mapValues from 'lodash.mapvalues'
+import shorten from 'vbb-short-station-name'
+import parse from 'vbb-parse-line'
+import modeWeights from 'vbb-mode-weights'
 
-const readFile = name => readCsv(path.join(__dirname, name + '.csv'))
+const readFile = name => readCsv(pathJoin(import.meta.dirname, name + '.csv'))
 
 const newStation = (id) => ({
 	type: 'station',
@@ -29,7 +27,7 @@ const newStation = (id) => ({
 })
 
 const writeJSON = (data, file) => new Promise((yay, nay) => {
-	fs.writeFile(path.join(__dirname, '..', file), JSON.stringify(data), (err) => {
+	writeFile(pathJoin(import.meta.dirname, '..', file), JSON.stringify(data), (err) => {
 		if (err) nay(err)
 		else yay()
 	})

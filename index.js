@@ -1,8 +1,5 @@
-'use strict'
-
-const get = require('lodash.get')
-
-const data = require('./simple')
+import get from 'lodash.get'
+import {stations as data} from './simple.js'
 
 
 
@@ -28,4 +25,8 @@ const stations = (pattern) => {
 	return data.filter(matcher)
 }
 
-module.exports = Object.assign(stations, {filterById, filterByKeys})
+export {
+	stations,
+	filterById,
+	filterByKeys,
+}

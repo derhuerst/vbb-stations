@@ -38,7 +38,7 @@ The [npm package](https://npmjs.com/vbb-stations) contains [*Friendly Public Tra
 You can filter all stations by `id` or any property ([`lodash.get`](https://lodash.com/docs/#get) will be used).
 
 ```js
-const stations = require('vbb-stations')
+import {stations} from 'vbb-stations'
 
 console.log(stations('de:11000:900009101')) // query a single station
 console.log(stations({ // filter by property
@@ -50,7 +50,9 @@ console.log(stations({ // filter by property
 `full.json` contains all stops of each station and unshortened names.
 
 ```js
-require('vbb-stations/full.json')['de:11000:900009101']
+import fullStations from 'vbb-stations/full.json' with {type: 'json'}
+
+console.log(fullStations['de:11000:900009101'])
 ```
 
 One entry looks like this:
@@ -97,7 +99,9 @@ One entry looks like this:
 `names.json` contains only shortened names.
 
 ```js
-require('vbb-stations/names.json')['de:11000:900009101'] // U Amrumer Str.
+import stationNames from 'vbb-stations/names.json' with {type: 'json'}
+
+stationNames['de:11000:900009101'] // U Amrumer Str.
 ```
 
 
