@@ -6,7 +6,7 @@ import {
 	GENERIC_NODE,
 	BOARDING_AREA,
 } from 'gtfs-utils/lib/location-types.js'
-import mapValues from 'lodash.mapvalues'
+import mapValues from 'lodash/mapValues.js'
 import shorten from 'vbb-short-station-name'
 import parse from 'vbb-parse-line'
 import modeWeights from 'vbb-mode-weights'

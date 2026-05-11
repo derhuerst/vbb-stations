@@ -35,7 +35,7 @@ The [npm package](https://npmjs.com/vbb-stations) contains [*Friendly Public Tra
 ]
 ```
 
-You can filter all stations by `id` or any property ([`lodash.get`](https://lodash.com/docs/#get) will be used).
+You can filter all stations by `id` or any property ([lodash's `get`](https://lodash.com/docs/#get) will be used).
 
 ```js
 import {stations} from 'vbb-stations'
