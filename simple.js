@@ -17,5 +17,6 @@ for (let s of rawData) {
 	})
 }
 
+// eslint-disable-next-line no-useless-assignment
 rawData = null // allow for gc
 module.exports = simple
