@@ -28,7 +28,7 @@
 	"bugs": "https://github.com/derhuerst/vbb-stations/issues",
 	"license": "ISC",
 	"engines": {
-		"node": ">=16"
+		"node": ">=26"
 	},
 	"dependencies": {
 		"lodash.get": "^4.4.2"
