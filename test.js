@@ -84,8 +84,6 @@ test('full', (t) => {
 	strictEqual(s.location.longitude, 13.349534)
 	ok(isRoughlyEqual(2500, s.weight, 4000))
 	ok(Array.isArray(s.stops))
-	// todo: actually it's 7, but the VBB GTFS data has a bug
-	// strictEqual(s.stops.length, 7)
 	strictEqual(s.stops.length, 2)
 
 	{
